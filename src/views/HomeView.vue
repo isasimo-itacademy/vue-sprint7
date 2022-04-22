@@ -1,8 +1,9 @@
 <template>
   <div>
+    <h1>Calcula el teu pressupost</h1>
     <p><strong>Què vols fer?</strong></p>
 
-    <div>
+    <div class="opcio">
       <input type="checkbox" id="paginaweb" value=500 v-model="checked" @change="opcions">
       <label for="paginaweb">Una pàgina Web - 500 €</label>
 
@@ -14,16 +15,18 @@
       <!-- {{ numIdiomes }} -->
 
     </div>
-    <div>
+    <div class="opcio">
       <input type="checkbox" id="seo" value=300 v-model="checked">
       <label for="seo">Una consultoria SEO - 300 €</label>
     </div>
-    <div>    
+    <div class="opcio">    
       <input type="checkbox" id="marketing" value=200 v-model="checked">
       <label for="marketing">Una campanya de Google Ads - 200 €</label>
     </div>
 
     <p><strong>Preu Total: {{ total }}</strong></p>
+
+    <button class="boto" @click="welcome">Anar Enrere</button>
 
   </div>
 </template>
@@ -62,10 +65,16 @@ export default {
       } else {
         this.paginaOberta = false;
       }
+    },
+    welcome(){
+      this.$router.push('/')
     }
   }
 }
 </script>
 
-<style>
+<style scoped>
+.opcio {
+  margin-bottom: 10px;
+}
 </style>
