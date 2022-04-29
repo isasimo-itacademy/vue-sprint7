@@ -1,9 +1,7 @@
 <template>
   <div class="panell">
-    <ButtonCounter :net="envianet"></ButtonCounter>
-    A fill "envianet": {{ envianet }} <br/>
+    <ButtonCounter :net="envianet" @increaseBy="passaNet" @reduceBy="passaNet"></ButtonCounter>
     A fill "getnet": {{ getnet }} <br/>
-
   </div>
 </template>
 
@@ -17,9 +15,14 @@ export default {
   },
   props: ['fill'],
   data() {
-    return { envianet: this.fill }
+    return { envianet: this.fill, getnet: this.getnet }
   },
-  emits: ['getnet']
+  methods: {
+    passaNet: function(prop) {
+      this.getnet = prop;
+      console.log(this.getnet)
+    }
+  }
 }
 </script>
 

@@ -1,37 +1,28 @@
 <template>
   <div class="counter">
-<!--     <button class="boto-square" v-on:click="$emit('decrement-quantity');" v-bind:disabled="modelValue<=1">-</button>
-    <input
-        type="number" min="1"
-        :value="modelValue"
-        @input="$emit('update:modelValue', $event.target.value)"
-    />
-    <button class="boto-square" v-on:click="$emit('increment-quantity');">+</button> -->
-    <button class="boto-square" v-on:click="resta()">-</button>
-    A net "enviafill": {{ enviafill }}
-    <button class="boto-square" v-on:click="suma()">+</button>
+    <button class="boto-square" @click="resta">-</button>
+    A net "anet": {{ anet }}
+    <button class="boto-square" @click="suma">+</button>
   </div>
 </template>
 
 <script>
 export default {
   name: 'ButtonCounter',
-   /*  props: ['modelValue'], */
   props: ['net'],
   data() {
-    return { enviafill: this.net }
+    return { anet: this.net }
   },
   methods: {
     suma(){
-      this.enviafill++;
-      console.log(this.enviafill);
+      this.$emit('increaseBy', this.anet++)
+      console.log(this.anet);
     },
     resta(){
-      this.enviafill--;
-      console.log(this.enviafill);
+      this.$emit('reduceBy', this.anet--)
+      console.log(this.anet);
     }
-  },
-  emits: ['enviafill']
+  }
 }
 </script>
 
