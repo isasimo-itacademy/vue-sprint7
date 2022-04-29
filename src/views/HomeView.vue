@@ -9,10 +9,12 @@
 
       <!-- Counter directly from Home -->
       <!-- Show component only if checkbox is checked -->
-      <ButtonCounter v-if="paginaOberta === true" v-model="numPagines" v-on:decrement-quantity="numPagines--" v-on:increment-quantity="numPagines++"/> 
+<!--       <ButtonCounter v-if="paginaOberta === true" v-model="numPagines" v-on:decrement-quantity="numPagines--" v-on:increment-quantity="numPagines++"/>  -->
       <!-- {{ numPagines }} -->
-      <ButtonCounter v-if="paginaOberta === true" v-model="numIdiomes" v-on:decrement-quantity="numIdiomes--" v-on:increment-quantity="numIdiomes++"/> 
+<!--       <ButtonCounter v-if="paginaOberta === true" v-model="numIdiomes" v-on:decrement-quantity="numIdiomes--" v-on:increment-quantity="numIdiomes++"/>  -->
       <!-- {{ numIdiomes }} -->
+      <PanellComp :fill="numPagines"></PanellComp>
+
 
     </div>
     <div class="opcio">
@@ -32,20 +34,22 @@
 </template>
 
 <script>
-import ButtonCounter from '@/components/ButtonCounter.vue'
+/* import ButtonCounter from '@/components/ButtonCounter.vue' */
+import PanellComp from '@/components/PanellComp.vue'
 
 export default {
   name: 'HomeView',
   components: {
-    ButtonCounter
+    /* ButtonCounter */
+    PanellComp
   },
   data() {
     return {
       checked: [],
       numPagines: '1',
       numIdiomes: '1', 
-      paginaOberta: false,
-    }
+      paginaOberta: false
+  }
   },
   computed: {
     total() {

@@ -1,28 +1,25 @@
 <template>
   <div class="panell">
-      <!-- <ButtonCounter v-model="numPagines" v-on:decrement-quantity="numPagines--" v-on:increment-quantity="numPagines++"/> {{ numPagines }}
-      <ButtonCounter v-model="numIdiomes" v-on:decrement-quantity="numIdiomes--" v-on:increment-quantity="numIdiomes++"/> {{ numIdiomes }}
- -->  
-  <!-- <ButtonCounter v-model="modelValue" v-on:decrement-quantity="modelValue--" v-on:increment-quantity="modelValue++"/> {{ modelValue }} -->
-   <!-- <input
-    type="number"
-    :value="modelValue"
-    @input="$emit('update:modelValue', $event.target.value)"
-  /> -->
+    <ButtonCounter :net="envianet"></ButtonCounter>
+    A fill "envianet": {{ envianet }} <br/>
+    A fill "getnet": {{ getnet }} <br/>
 
   </div>
 </template>
 
 <script>
-/* import ButtonCounter from '@/components/ButtonCounter.vue' */
+import ButtonCounter from '@/components/ButtonCounter.vue'
 
 export default {
   name: 'PanellComp',
   components: {
-    /* ButtonCounter */
+    ButtonCounter
   },
-  props: ['modelValue'],
-  emits: ['update:modelValue']
+  props: ['fill'],
+  data() {
+    return { envianet: this.fill }
+  },
+  emits: ['getnet']
 }
 </script>
 
