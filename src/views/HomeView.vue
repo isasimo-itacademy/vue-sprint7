@@ -7,14 +7,10 @@
       <input type="checkbox" id="paginaweb" value=500 v-model="checked" @change="opcions">
       <label for="paginaweb">Una pàgina Web - 500 €</label>
 
-      <!-- Counter directly from Home -->
       <!-- Show component only if checkbox is checked -->
-<!--       <ButtonCounter v-if="paginaOberta === true" v-model="numPagines" v-on:decrement-quantity="numPagines--" v-on:increment-quantity="numPagines++"/>  -->
-      <!-- {{ numPagines }} -->
-<!--       <ButtonCounter v-if="paginaOberta === true" v-model="numIdiomes" v-on:decrement-quantity="numIdiomes--" v-on:increment-quantity="numIdiomes++"/>  -->
-      <!-- {{ numIdiomes }} -->
-      <PanellComp :fill="numPagines"></PanellComp>
-
+      <PanellComp v-if="paginaOberta === true" :fillPag="numPagines" :fillIdi="numIdiomes" @update-var1="updateVar1" @update-var2="updateVar2"></PanellComp>
+      <!-- Num Pàgines: {{ numPagines }}
+      Num Idiomes: {{ numIdiomes }} -->
 
     </div>
     <div class="opcio">
@@ -63,6 +59,12 @@ export default {
      } 
   },
   methods: {
+    updateVar1(e) {
+      this.numPagines = e;
+    },
+    updateVar2(e) {
+      this.numIdiomes = e;
+    },
     opcions(){
       if(!this.paginaOberta){
         this.paginaOberta = true;

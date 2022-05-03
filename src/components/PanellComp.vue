@@ -1,7 +1,7 @@
 <template>
   <div class="panell">
-    <ButtonCounter :net="envianet" @increaseBy="passaNet" @reduceBy="passaNet"></ButtonCounter>
-    A fill "getnet": {{ getnet }} <br/>
+    <div class="opcio">Pàgines <ButtonCounter :count="tempPag" v-model="tempPag" @increase-by="increaseCountPag" @decrease-by="decreaseCountPag"></ButtonCounter></div>
+    <div class="opcio">Idiomes <ButtonCounter :count="tempIdi" v-model="tempIdi" @increase-by="increaseCountIdi" @decrease-by="decreaseCountIdi"></ButtonCounter></div>
   </div>
 </template>
 
@@ -13,14 +13,26 @@ export default {
   components: {
     ButtonCounter
   },
-  props: ['fill'],
+  props: ['fillPag', 'fillIdi'],
   data() {
-    return { envianet: this.fill, getnet: this.getnet }
+    return { tempPag: this.fillPag, tempIdi: this.fillIdi }
   },
   methods: {
-    passaNet: function(prop) {
-      this.getnet = prop;
-      console.log(this.getnet)
+    increaseCountPag() {
+      this.tempPag++
+      this.$emit('update-var1', this.tempPag)
+    },
+    decreaseCountPag() {
+      this.tempPag--
+      this.$emit('update-var1', this.tempPag)
+    },
+    increaseCountIdi() {
+      this.tempIdi++
+      this.$emit('update-var2', this.tempIdi)
+    },
+    decreaseCountIdi() {
+      this.tempIdi--
+      this.$emit('update-var2', this.tempIdi)
     }
   }
 }
@@ -36,5 +48,7 @@ export default {
 }
 .opcio{
   display: flex;
+  align-items: center;
+  margin-top: 10px;
 }
 </style>

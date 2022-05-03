@@ -1,35 +1,27 @@
 <template>
   <div class="counter">
-    <button class="boto-square" @click="resta">-</button>
-    A net "anet": {{ anet }}
-    <button class="boto-square" @click="suma">+</button>
+    <button class="boto-square" @click="$emit('decreaseBy')" v-bind:disabled="count<=1">-</button>
+    <input
+    type="number" min="1"
+    :value="count"
+    @input="$emit('update:count', $event.target.value)"
+  />
+    <button class="boto-square" @click="$emit('increaseBy')">+</button>
   </div>
 </template>
 
 <script>
 export default {
   name: 'ButtonCounter',
-  props: ['net'],
-  data() {
-    return { anet: this.net }
-  },
-  methods: {
-    suma(){
-      this.$emit('increaseBy', this.anet++)
-      console.log(this.anet);
-    },
-    resta(){
-      this.$emit('reduceBy', this.anet--)
-      console.log(this.anet);
-    }
-  }
+  props: ['count'],
+  emits: ['update:count','increaseBy','decreaseBy']
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .counter {
-  margin: 12px 20px
+  margin-left: 10px;
 }
 input {
   background-color: white;
