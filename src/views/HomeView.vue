@@ -80,6 +80,9 @@ export default {
 </script>
 
 <style scoped>
+input{
+  margin-right: 10px;
+}
 .opcio {
   margin-bottom: 10px;
 }

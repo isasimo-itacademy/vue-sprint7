@@ -27,8 +27,8 @@ input {
   background-color: white;
   border: none;
   border-radius: 6px;
-  margin: 0 4px;
-  padding: 6px 0;
+  margin: 0 8px;
+  padding: 8px 0;
   width: 40px;
   text-align: center;
 }

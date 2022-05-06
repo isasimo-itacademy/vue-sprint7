@@ -4,6 +4,7 @@
     <router-link to="/home">Home</router-link>
   </nav>
   <router-view class="content"/>
+
 </template>
 
 <style>
@@ -16,7 +17,7 @@ body{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #dbe9e3;
-  color: #2c3e50;
+  color: #334456;
   padding: 30px;
   margin: 0;
 }
@@ -39,7 +40,7 @@ nav a.router-link-exact-active {
   color: #2c3e50;
   border: none;
   border-radius: 6px;
-  padding: 12px;
+  padding: 8px 12px;
   font-weight: 600;
 }
 
@@ -48,7 +49,8 @@ nav a.router-link-exact-active {
   color: #2c3e50;
   border: none;
   border-radius: 6px;
-  padding: 6px 10px;
+  padding: 8px;
+  min-width: 40px;
   font-weight: 600;
 }
 
