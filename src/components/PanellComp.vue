@@ -1,28 +1,40 @@
 <template>
   <div class="panell">
-      <!-- <ButtonCounter v-model="numPagines" v-on:decrement-quantity="numPagines--" v-on:increment-quantity="numPagines++"/> {{ numPagines }}
-      <ButtonCounter v-model="numIdiomes" v-on:decrement-quantity="numIdiomes--" v-on:increment-quantity="numIdiomes++"/> {{ numIdiomes }}
- -->  
-  <!-- <ButtonCounter v-model="modelValue" v-on:decrement-quantity="modelValue--" v-on:increment-quantity="modelValue++"/> {{ modelValue }} -->
-   <!-- <input
-    type="number"
-    :value="modelValue"
-    @input="$emit('update:modelValue', $event.target.value)"
-  /> -->
-
+    <div class="opcio">Pàgines <ButtonCounter :count="tempPag" v-model="tempPag" @increase-by="increaseCountPag" @decrease-by="decreaseCountPag"></ButtonCounter></div>
+    <div class="opcio">Idiomes <ButtonCounter :count="tempIdi" v-model="tempIdi" @increase-by="increaseCountIdi" @decrease-by="decreaseCountIdi"></ButtonCounter></div>
   </div>
 </template>
 
 <script>
-/* import ButtonCounter from '@/components/ButtonCounter.vue' */
+import ButtonCounter from '@/components/ButtonCounter.vue'
 
 export default {
   name: 'PanellComp',
   components: {
-    /* ButtonCounter */
+    ButtonCounter
   },
-  props: ['modelValue'],
-  emits: ['update:modelValue']
+  props: ['fillPag', 'fillIdi'],
+  data() {
+    return { tempPag: this.fillPag, tempIdi: this.fillIdi }
+  },
+  methods: {
+    increaseCountPag() {
+      this.tempPag++
+      this.$emit('update-var1', this.tempPag)
+    },
+    decreaseCountPag() {
+      this.tempPag--
+      this.$emit('update-var1', this.tempPag)
+    },
+    increaseCountIdi() {
+      this.tempIdi++
+      this.$emit('update-var2', this.tempIdi)
+    },
+    decreaseCountIdi() {
+      this.tempIdi--
+      this.$emit('update-var2', this.tempIdi)
+    }
+  }
 }
 </script>
 
@@ -36,5 +48,7 @@ export default {
 }
 .opcio{
   display: flex;
+  align-items: center;
+  margin-top: 10px;
 }
 </style>
