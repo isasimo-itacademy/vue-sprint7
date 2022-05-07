@@ -45,15 +45,15 @@
         <button class="boto boto-secondari marge-esq" @click="sort('preu')">Ordena x Preu</button>
         <button class="boto boto-secondari marge-esq" @click="sort('reinicia')">Reinicia Ordre</button>
       </div>
-
-      <PressupostList v-for="(item) in sortitems" :key="item.id" :nomclient="item.nomclient" :nompresu="item.nompresu" :total="item.preutotal"></PressupostList>
+      <input type="text" v-model="search" placeholder="Busca per nom o pressupost"/>
+      <PressupostList v-for="(item) in sortfilteritems" :key="item.id" :nomclient="item.nomclient" :nompresu="item.nompresu" :total="item.preutotal"></PressupostList>
     </div>
   </div>
 </template>
 
 <script>
 import PanellComp from '@/components/PanellComp.vue'
-import PressupostList from '@/components/PressupostList.vue'
+import PressupostList from '@/components/PrressupostList.vue'
 
 export default {
   name: 'HomeView',
@@ -71,7 +71,8 @@ export default {
       nomclient:'',
       nompresu:'',
       items: [],
-      sortType:''
+      sortType:'',
+      search:'',
     }    
   },
   computed: {
@@ -84,7 +85,16 @@ export default {
         return serveis;
       }
      },
-    sortitems() {
+    sortfilteritems() {
+      // cerca per nom o pressupost 
+      if(this.search != '' && this.search) {   
+        let result = [...this.items].filter((item) => {
+          return item.nompresu.toUpperCase().includes(this.search.toUpperCase())
+          || item.nomclient.toUpperCase().includes(this.search.toUpperCase())
+        }); 
+        return result;
+      }
+      // ordena per preu 
       if(this.sortType === 'preu') {
         let result = [...this.items].sort((a,b) => {
           if (a.preutotal > b.preutotal) return 1;
@@ -93,6 +103,7 @@ export default {
         });
         return result;
       } 
+      // ordena per pressupost 
       if(this.sortType === 'nom') {
         let result = [...this.items].sort((a,b) => {
           if(a.nompresu < b.nompresu) return -1;
