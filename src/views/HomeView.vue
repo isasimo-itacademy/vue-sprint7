@@ -38,20 +38,20 @@
     </div>
     <div v-if="llistatObert" class="llistat">
       <h3>Pressupostos rebuts</h3>
-      <div class="fila" v-for="(item, index) in items" :key="item.id">
-        <strong>{{index}}. Client:</strong> {{ item.nomclient }} <strong>Pressupost:</strong> {{ item.nompresu }} <strong>Total:</strong> {{ item.total }}
-      </div>
+      <PressupostList v-for="(item) in items" :key="item.id" :nomclient="item.nomclient" :nompresu="item.nompresu" :total="item.total"></PressupostList>
     </div>
   </div>
 </template>
 
 <script>
 import PanellComp from '@/components/PanellComp.vue'
+import PressupostList from '@/components/PressupostList.vue'
 
 export default {
   name: 'HomeView',
   components: {
-    PanellComp
+    PanellComp, 
+    PressupostList
   },
   data() {
     return {
@@ -126,14 +126,6 @@ input{
   display: flex;
   flex-direction: column;
   margin-bottom: 16px;
-}
-
-.fila {
-  border: 1px solid black;
-  background-color: white;
-  border-radius: 10px;
-  padding: 12px;
-  margin: 12px 0;
 }
 
 </style>
