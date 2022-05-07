@@ -3,11 +3,11 @@
     
     <div class="opcio">Pàgines 
       <ButtonCounter :count="tempPag" v-model="tempPag" @increase-by="increaseCountPag" @decrease-by="decreaseCountPag"></ButtonCounter>
-      <button class="boto marge" @click="toggle = !toggle, pagines = !pagines">Info</button>
+      <button class="boto boto-primari marge-esq" @click="toggle = !toggle, pagines = !pagines">Info</button>
     </div>
     <div class="opcio">Idiomes 
       <ButtonCounter :count="tempIdi" v-model="tempIdi" @increase-by="increaseCountIdi" @decrease-by="decreaseCountIdi"></ButtonCounter>
-      <button class="boto marge" @click="toggle = !toggle, idiomes = !idiomes">Info</button>
+      <button class="boto boto-primari marge-esq" @click="toggle = !toggle, idiomes = !idiomes">Info</button>
       </div>
     
     <!-- Overlay -->
@@ -67,9 +67,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.marge {
-  margin-left: 16px;
-}
+
 .panell, .mesinfo {
   border: 2px solid black;
   border-radius: 10px;

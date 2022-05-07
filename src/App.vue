@@ -8,7 +8,7 @@
 </template>
 
 <style>
-body{
+body {
   padding: 0;
   margin: 0;
 }
@@ -23,7 +23,7 @@ body{
 }
 .content {
   padding: 0 30px;
-  height:100vh;
+  height: 90vh;
 }
 nav {
   padding: 30px;
@@ -35,9 +35,25 @@ nav a {
 nav a.router-link-exact-active {
   color: #42b983;
 }
-.boto {
+
+.marge-esq {
+  margin-left: 16px;
+}
+.marge-dre {
+  margin-right: 16px;
+}
+
+.boto-primari {
   background-color: #2bd588;
   color: #2c3e50;
+}
+
+.boto-secondari {
+  background-color: #2c3e50;
+  color:  #2bd588;
+}
+
+.boto {
   border: none;
   border-radius: 6px;
   padding: 8px 12px;
@@ -54,8 +70,9 @@ nav a.router-link-exact-active {
   font-weight: 600;
 }
 
-.boto:hover, .boto-square:hover {
+.boto-primari:hover, .boto-square:hover {
   background-color: #47e49e;
   cursor: pointer;
 }
+
 </style>

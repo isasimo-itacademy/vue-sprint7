@@ -1,7 +1,8 @@
 <template>
   <div class="welcome">
     <h1>Benvingudes a Pressupostland</h1>
-    <button class="boto" @click="home">Demana Pressupost</button>
+    <p>Demana tants pressupostos com vulguis</p>
+    <button class="boto boto-primari" @click="home">Demana Pressupost</button>
   </div>
 </template>
 
