@@ -8,9 +8,10 @@
 </template>
 
 <style>
-body {
+html {
   padding: 0;
   margin: 0;
+  background-color: #dbe9e3;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -23,7 +24,6 @@ body {
 }
 .content {
   padding: 0 30px;
-  height: 90vh;
 }
 nav {
   padding: 30px;

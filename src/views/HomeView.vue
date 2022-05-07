@@ -1,15 +1,15 @@
 <template>
-  <div>
+  <div class="home">
     <div class="main">
       <h1>Calcula el teu pressupost</h1>
 
       <div class="basic-input">
         <label for="nom"><strong>Nom del Client</strong></label>
-        <input type="text" id="nom" placeholder="Introdueix el teu nom" v-model="nomclient">
+        <input type="text" id="nom" v-model="nomclient" placeholder="Introdueix el teu nom">
       </div>
       <div class="basic-input">
         <label for="presu"><strong>Nom del pressupost</strong></label>
-        <input type="text" id="presu" placeholder="Introdueix el nom del pressupost" v-model="nompressupost">
+        <input type="text" id="presu" v-model="nompresu" placeholder="Introdueix el nom del pressupost">
       </div>
 
       <p><strong>Serveis:</strong></p>
@@ -33,10 +33,14 @@
 
       <div class="accions">
         <button class="boto boto-primari" @click="welcome">Anar Enrere</button>
-        <button class="boto boto-secondari marge-esq" @click="welcome">Demana Pressupost</button>
+        <button class="boto boto-secondari marge-esq" @click="pressuposta()">Demana Pressupost</button>
       </div>
     </div>
-    <div v-if="llistat" class="llistat">
+    <div v-if="llistatObert" class="llistat">
+      <h3>Pressupostos rebuts</h3>
+      <div class="fila" v-for="(item, index) in items" :key="item.id">
+        <strong>{{index}}. Client:</strong> {{ item.nomclient }} <strong>Pressupost:</strong> {{ item.nompresu }} <strong>Total:</strong> {{ item.total }}
+      </div>
     </div>
   </div>
 </template>
@@ -55,8 +59,11 @@ export default {
       numPagines: '1',
       numIdiomes: '1', 
       panellObert: false,
-      llistatObert:false
-  }
+      llistatObert: false,
+      nomclient:'',
+      nompresu:'',
+      items: [],
+    }    
   },
   computed: {
     total() {
@@ -78,12 +85,34 @@ export default {
     },
     welcome(){
       this.$router.push('/')
+    },
+    pressuposta(){
+      this.llistatObert = true;
+
+      let new_pressu = {}; 
+      new_pressu.nomclient = this.nomclient;
+      new_pressu.nompresu = this.nompresu;
+      new_pressu.total = this.total;
+      this.items.push(new_pressu);
+      console.log(this.items);
     }
   }
 }
 </script>
 
 <style scoped>
+
+.home {
+  display: flex;
+  justify-content: space-between;
+}
+.main {
+  width: 55%;
+}
+.llistat{
+  width: 40%;
+}
+
 input{
   margin-right: 10px;
 }
@@ -98,9 +127,13 @@ input{
   flex-direction: column;
   margin-bottom: 16px;
 }
-.etiqueta{
-  font-size: 14px;
-  font-weight: 600;
+
+.fila {
+  border: 1px solid black;
+  background-color: white;
+  border-radius: 10px;
+  padding: 12px;
+  margin: 12px 0;
 }
 
 </style>
