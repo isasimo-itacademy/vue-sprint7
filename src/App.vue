@@ -75,4 +75,9 @@ nav a.router-link-exact-active {
   cursor: pointer;
 }
 
+.accions {
+  display: flex;
+  margin-bottom: 16px;
+}
+
 </style>

@@ -1,7 +1,7 @@
-<template> 
-    <div class="file">
-      <strong>Client:</strong> {{ nomclient }} <strong>Pressupost:</strong> {{ nompresu }} <strong>Total:</strong> {{ total }}
-    </div>  
+<template>
+      <div class="fila">
+        <strong>Client:</strong> {{ nomclient }} <strong>Pressupost:</strong> {{ nompresu }} <strong>Total:</strong> {{ total }}
+      </div> 
 </template>
 
 <script>

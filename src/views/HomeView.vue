@@ -1,3 +1,4 @@
+/* eslint-disable vue/no-side-effects-in-computed-properties */
 <template>
   <div class="home">
     <div class="main">
@@ -32,13 +33,20 @@
       <p><strong>Preu Total: {{ total }}</strong></p>
 
       <div class="accions">
-        <button class="boto boto-primari" @click="welcome">Anar Enrere</button>
-        <button class="boto boto-secondari marge-esq" @click="pressuposta()">Demana Pressupost</button>
+        <button class="boto boto-secondari" @click="welcome">Anar Enrere</button>
+        <button class="boto boto-primari marge-esq" @click="pressuposta()">Demana Pressupost</button>
       </div>
     </div>
     <div v-if="llistatObert" class="llistat">
       <h3>Pressupostos rebuts</h3>
-      <PressupostList v-for="(item) in items" :key="item.id" :nomclient="item.nomclient" :nompresu="item.nompresu" :total="item.total"></PressupostList>
+
+      <div class="accions">
+        <button class="boto boto-secondari" @click="sort('nom')">Ordena x Presupost</button>
+        <button class="boto boto-secondari marge-esq" @click="sort('preu')">Ordena x Preu</button>
+        <button class="boto boto-secondari marge-esq" @click="sort('reinicia')">Reinicia Ordre</button>
+      </div>
+
+      <PressupostList v-for="(item) in sortitems" :key="item.id" :nomclient="item.nomclient" :nompresu="item.nompresu" :total="item.preutotal"></PressupostList>
     </div>
   </div>
 </template>
@@ -63,6 +71,7 @@ export default {
       nomclient:'',
       nompresu:'',
       items: [],
+      sortType:''
     }    
   },
   computed: {
@@ -74,7 +83,30 @@ export default {
       } else {
         return serveis;
       }
-     } 
+     },
+    sortitems() {
+      if(this.sortType === 'preu') {
+        let result = [...this.items].sort((a,b) => {
+          if (a.preutotal > b.preutotal) return 1;
+          if (a.preutotal < b.preutotal) return -1;
+          else return 0;
+        });
+        return result;
+      } 
+      if(this.sortType === 'nom') {
+        let result = [...this.items].sort((a,b) => {
+          if(a.nompresu < b.nompresu) return -1;
+          if(a.nompresu > b.nompresu) return 1;
+          return 0;
+        });
+        return result; 
+      } if(this.sortType === 'reinicia') {
+        return this.items;
+      } else { 
+        // per defecte
+        return this.items;
+      }
+    }
   },
   methods: {
     updateVar1(e) {
@@ -92,9 +124,12 @@ export default {
       let new_pressu = {}; 
       new_pressu.nomclient = this.nomclient;
       new_pressu.nompresu = this.nompresu;
-      new_pressu.total = this.total;
+      new_pressu.preutotal = this.total;
       this.items.push(new_pressu);
-      console.log(this.items);
+      /* console.log(this.items); */
+    },
+    sort(type) {
+      this.sortType = type;
     }
   }
 }
@@ -118,9 +153,6 @@ input{
 }
 .opcio {
   margin-bottom: 10px;
-}
-.accions {
-  display: flex;
 }
 .basic-input{
   display: flex;
